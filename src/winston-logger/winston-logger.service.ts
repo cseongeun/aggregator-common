@@ -2,9 +2,13 @@ import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { createLogger, format, transports, Logform } from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as winston from 'winston';
+import { addColors } from 'winston/lib/winston/config';
 
 @Injectable()
 export class WinstonLoggerService extends ConsoleLogger {
+  private levels: any;
+  private colors: any;
+
   private readonly rotateLoggerFormat: Logform.Format;
   private readonly rotateOptions;
 
@@ -62,7 +66,10 @@ export class WinstonLoggerService extends ConsoleLogger {
     });
 
     this.stdoutLogger = createLogger({
-      format: format.simple(),
+      format: winston.format.combine(
+        winston.format.colorize({ all: true }),
+        winston.format.simple(),
+      ),
       transports: [new transports.Console()],
     });
   }
@@ -71,16 +78,18 @@ export class WinstonLoggerService extends ConsoleLogger {
     return this.stdoutLogger;
   }
 
-  log(message: string): void {
+  log(message: string, consoleMessage?: string): void {
     this.rotateLogger.info(message);
-    this._getConsoleLogger().info(message);
+    this._getConsoleLogger().info(consoleMessage ? consoleMessage : message);
   }
-  warn(message: string): void {
+
+  warn(message: string, consoleMessage?: string): void {
     this.rotateWarnLogger.warn(message);
-    this._getConsoleLogger().warn(message);
+    this._getConsoleLogger().warn(consoleMessage ? consoleMessage : message);
   }
-  error(message: string): void {
+
+  error(message: string, consoleMessage?: string): void {
     this.rotateErrorLogger.error(message);
-    this._getConsoleLogger().error(message);
+    this._getConsoleLogger().error(consoleMessage ? consoleMessage : message);
   }
 }
