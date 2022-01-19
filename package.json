@@ -16,7 +16,7 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "nest build",
-    "deploy": "npm run build; npm version patch; npm publish;",
+    "deploy": "rimraf node_modules; rimraf package-lock.json; npm i; npm run build; npm version patch; npm publish;",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
