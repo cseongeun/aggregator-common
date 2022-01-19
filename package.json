@@ -1,6 +1,6 @@
 {
   "name": "@seongeun/aggregator-logger",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Aggregator logger",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
