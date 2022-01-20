@@ -2,7 +2,6 @@ import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { createLogger, format, transports, Logform } from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as winston from 'winston';
-import { addColors } from 'winston/lib/winston/config';
 
 @Injectable()
 export class WinstonLoggerService extends ConsoleLogger {
