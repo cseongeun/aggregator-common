@@ -1,23 +1,19 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { isUndefined } from '@seongeun/aggregator-util/lib/type';
-import { RedisService } from 'nestjs-redis';
+import { Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Ok, Redis } from 'ioredis';
+import { REDIS_CLIENT } from './redis.constant';
 
 @Injectable()
-export class RedisCacheService implements OnModuleInit {
-  client: Redis;
-  constructor(private readonly redisService: RedisService) {}
+export class RedisService {
+  constructor(@Inject(REDIS_CLIENT) private readonly redisClient: Redis) {}
 
-  async onModuleInit(): Promise<void> {
-    this.client = await this.redisService.getClient();
-  }
   /**
    * Redis 데이터 가져오기
    * @param key 키
    * @returns 데이터
    */
   async getData(key: string): Promise<any> {
-    return this.client.get(key);
+    return this.redisClient.get(key);
   }
 
   /**
@@ -26,7 +22,7 @@ export class RedisCacheService implements OnModuleInit {
    * @param value 데이터
    */
   async setData(key: string, value: any): Promise<Ok> {
-    return this.client.set(key, value);
+    return this.redisClient.set(key, value);
   }
 
   // /**
