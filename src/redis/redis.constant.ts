@@ -1,6 +1,6 @@
 export const REDIS_CLIENT = 'REDIS_CLIENT';
 
-export enum REDIS_CACHE_KEY {
-  EVENT_STORAGE = 'event',
-  INTERACTION_STORAGE = 'interaction',
+export enum REDIS_KEY {
+  EVENT_STORAGE = 'EVENT_STORAGE',
+  INTERACTION_STORAGE = 'INTERACTION_STORAGE',
 }
