@@ -9,7 +9,6 @@ import { RedisCacheService } from './redis-cache.service';
       useFactory: async (configService: ConfigService) => ({
         host: configService.get('REDIS_HOST'),
         port: configService.get('REDIS_PORT'),
-        ttl: configService.get('REDIS_TTL'),
       }),
       inject: [ConfigService],
     }),
