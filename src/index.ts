@@ -1,3 +1,5 @@
+export * from './exception/exception.constant';
+
 export * from './winston-logger/winston-logger.module';
 export * from './winston-logger/winston-logger.service';
 
