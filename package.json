@@ -33,7 +33,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@seongeun/aggregator-util": "^1.0.30",
+    "@seongeun/aggregator-util": "^1.0.31",
     "ioredis": "^4.28.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
